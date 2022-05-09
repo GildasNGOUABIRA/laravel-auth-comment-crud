@@ -23,20 +23,12 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        if ($user->status == 1) {
-            $user = User::find($id);
-            $user->status = 0;
-            $user->update();
+        $user->status = !$user->status;
+        $user->update();
+        return back();
 
-            return back();
-        } else {
-
-            $user->status = 1;
-            $user->update();
-
-            return back();
-        }
     }
+
 
     // public function enable($id){
 
